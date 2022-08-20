@@ -4,6 +4,7 @@ Main FastAPI app.
 """
 # -*- coding: utf-8 -*-
 from typing import List
+import os
 
 from fastapi import FastAPI, Query
 
@@ -37,6 +38,15 @@ async def random_persons(
     persons = random_users.create(iterations=num)
     return persons
 
+@app.get("/environ")
+async def environ() -> str:
+    """
+    Get a random list of persons.
+
+    The defautl is 5
+
+    """
+    return os.environ["DB_ID"]
 
 @app.get("/password", response_model=Password, tags=["Randomness..."])
 async def random_password(
