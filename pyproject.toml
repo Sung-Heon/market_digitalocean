@@ -1,34 +1,21 @@
 [tool.poetry]
-name = "fastapp"
-version = "0.0.1"
+name = "market_digitalocean"
+version = "0.1.0"
 description = ""
-authors = ["Evan Baird <mrcartoonster@gmail.com>"]
+authors = ["elon <elon4856@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
-fastapi = {extras = ["all"], version = "^0.62.0"}
-mimesis = "^4.1.2"
-emoji = "^0.6.0"
-gunicorn = "^20.0.4"
-email-validator = "^1.1.2"
+python = "^3.9"
+fastapi = "^0.79.1"
+uvicorn = "^0.18.2"
+pydantic = "^1.9.2"
+gunicorn = "^20.1.0"
+emoji = "^2.0.0"
+mimesis = "^6.0.0"
+email-validator = "^1.2.1"
 
 [tool.poetry.dev-dependencies]
-pytest = "^6.1.2"
-pytest-picked = "^0.4.4"
-ipython = "^7.19.0"
-prettyprinter = "^0.18.0"
-pre-commit = "^2.9.3"
-pendulum = "^2.1.2"
-pytest-clarity = "^0.3.0-alpha.0"
-pytest-emoji = "^0.2.0"
-pytest-randomly = "^3.5.0"
-pytest-pythonpath = "^0.7.3"
-httpx = "^0.16.1"
-
-[tool.pytest.ini_options]
-addopts = "-rssxX -l --tb=short --strict --randomly-seed=last --diff-type=split --emoji -vvv -p no:warnings"
-xfail_strict = "True"
 
 [build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
