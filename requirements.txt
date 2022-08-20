@@ -5,12 +5,14 @@ dnspython==2.2.1; python_version >= "3.6" and python_version < "4.0" and (python
 email-validator==1.2.1; (python_version >= "2.7" and python_full_version < "3.0.0") or (python_full_version >= "3.5.0")
 emoji==2.0.0
 fastapi==0.79.1; python_full_version >= "3.6.1"
+greenlet==1.1.2; python_version >= "3" and python_full_version < "3.0.0" and (platform_machine == "aarch64" or platform_machine == "ppc64le" or platform_machine == "x86_64" or platform_machine == "amd64" or platform_machine == "AMD64" or platform_machine == "win32" or platform_machine == "WIN32") and (python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.6.0") or python_version >= "3" and (platform_machine == "aarch64" or platform_machine == "ppc64le" or platform_machine == "x86_64" or platform_machine == "amd64" or platform_machine == "AMD64" or platform_machine == "win32" or platform_machine == "WIN32") and (python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.6.0") and python_full_version >= "3.5.0"
 gunicorn==20.1.0; python_version >= "3.5"
 h11==0.13.0; python_version >= "3.7"
 idna==3.3; python_full_version >= "3.6.2" and python_version >= "3.6"
 mimesis==6.0.0; python_version >= "3.8" and python_version < "4.0"
 pydantic==1.9.2; python_full_version >= "3.6.1"
 sniffio==1.2.0; python_version >= "3.6" and python_full_version >= "3.6.2"
+sqlalchemy==1.4.40; (python_version >= "2.7" and python_full_version < "3.0.0") or (python_full_version >= "3.6.0")
 starlette==0.19.1; python_version >= "3.6" and python_full_version >= "3.6.1"
 typing-extensions==4.3.0; python_version >= "3.7" and python_full_version >= "3.6.1" and python_version < "3.10"
 uvicorn==0.18.2; python_version >= "3.7"
