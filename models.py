@@ -26,8 +26,12 @@ class Item(Base):
     owner = relationship("User", back_populates="items")
 
 
-class Test(Base):
-    __tablename__ = "test"
+class Product(Base):
+    __tablename__ = "product"
 
-    test = Column(Integer)
+    id = Column(Integer, primary_key=True, index=True)
+    picture_url = Column(String)
+    description = Column(String)
+    name = Column(String)
+    selling = Column(Boolean)
 

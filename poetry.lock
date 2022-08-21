@@ -156,6 +156,18 @@ email = ["email-validator (>=1.0.3)"]
 dotenv = ["python-dotenv (>=0.10.4)"]
 
 [[package]]
+name = "pymysql"
+version = "1.0.2"
+description = "Pure Python MySQL Driver"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.extras]
+rsa = ["cryptography"]
+ed25519 = ["PyNaCl (>=1.4.0)"]
+
+[[package]]
 name = "sniffio"
 version = "1.2.0"
 description = "Sniff out which async library your code is running under"
@@ -236,7 +248,7 @@ standard = ["websockets (>=10.0)", "httptools (>=0.4.0)", "watchfiles (>=0.13)",
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "8712063aba80056bf0cd6c880d4cd82737e7b4d13cd267379be9cfb1bdc22396"
+content-hash = "44cdc20080f4ddfc0d87529130c2297dbba728bb10f51e862a66c1a64307f287"
 
 [metadata.files]
 anyio = []
@@ -311,6 +323,7 @@ idna = [
 ]
 mimesis = []
 pydantic = []
+pymysql = []
 sniffio = []
 sqlalchemy = []
 starlette = []

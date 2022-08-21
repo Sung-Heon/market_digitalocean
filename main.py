@@ -13,8 +13,7 @@ import crud
 import schemas
 from database import SessionLocal
 from description import desc
-from helpers import emojis, passwd, random_users
-from pydantic_models import Emoji, Password, Person
+
 
 app = FastAPI(
     title="Something Random...",
@@ -31,62 +30,12 @@ def get_db():
     finally:
         db.close()
 
-@app.get("/test/", response_model=List[schemas.Test])
+@app.get("/test", response_model=List[schemas.Product])
 def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    tests = crud.get_items(db, skip=skip, limit=limit)
+    tests = crud.get_products(db, skip=skip, limit=limit)
     return tests
 
-
-@app.get("/person", response_model=List[Person], tags=["Randomness..."])
-async def random_persons(
-    num: int = Query(
-        5,
-        title="Get a random list of people.",
-        ge=1,
-        le=50,
-    )
-) -> List[Person]:
-    """
-    Get a random list of persons.
-
-    The defautl is 5
-
-    """
-    persons = random_users.create(iterations=num)
-    return persons
-
-@app.get("/environ")
-async def environ() -> str:
-    """
-    Get a random list of persons.
-
-    The defautl is 5
-
-    """
-    return os.environ["DB_ID"]
-
-@app.get("/password", response_model=Password, tags=["Randomness..."])
-async def random_password(
-    num: int = Query(
-        8,
-        title="Length of password.",
-        le=64,
-    ),
-    hashing: bool = Query(
-        False,
-        title="Return an MD5 hashed password",
-    ),
-):
-    """
-    Generate a random password.
-    """
-    password = passwd(num, hashing)
-    return {"password": password}
-
-
-@app.get("/emoji", response_model=Emoji, tags=["Randomness..."])
-async def random_emoji():
-    """
-    Return a random emoji.
-    """
-    return {"emoji": emojis()}
+@app.get("/test1", response_model=schemas.Product)
+def read_user(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    test = crud.get_product(db)
+    return test
