@@ -4,7 +4,9 @@ import models, schemas
 
 
 def get_products(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(models.Product).offset(skip).limit(limit).all()
+    today = '2022-08-21'
+    test = db.query(models.RealPrice).join(models.Product).filter(models.RealPrice.date == today).order_by(models.RealPrice.variance)
+    return test[:4], test[-4:]
 
 
 def get_product(db: Session):

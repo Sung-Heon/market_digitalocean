@@ -30,10 +30,10 @@ def get_db():
     finally:
         db.close()
 
-@app.get('/product', response_model=List[schemas.Product])
+@app.get('/product')
 def get_products(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    tests = crud.get_products(db, skip=skip, limit=limit)
-    return tests
+    test1, test2 = crud.get_products(db, skip=skip, limit=limit)
+    return test1,test2
 
 @app.get("/test1", response_model=schemas.Product)
 def read_user( db: Session = Depends(get_db)):
