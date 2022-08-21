@@ -5,7 +5,7 @@ import models, schemas
 
 def get_products(db: Session, skip: int = 0, limit: int = 100):
     today = '2022-08-21'
-    test = db.query(models.RealPrice).join(models.Product).filter(models.RealPrice.date == today).order_by(models.RealPrice.variance)
+    test = db.query(models.RealPrice, models.Product).join(models.Product, models.Product.id == models.RealPrice.product_id).filter(models.RealPrice.date == today).order_by(models.RealPrice.variance).all()
     return test[:4], test[-4:]
 
 
