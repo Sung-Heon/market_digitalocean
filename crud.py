@@ -1,12 +1,22 @@
 from sqlalchemy.orm import Session
 
 import models, schemas
+from enum_type import CategoryType
 
 
-def get_products(db: Session, skip: int = 0, limit: int = 100):
+def get_products(db: Session, category: CategoryType):
     today = '2022-08-21'
-    test = db.query(models.RealPrice, models.Product).join(models.Product, models.Product.id == models.RealPrice.product_id).filter(models.RealPrice.date == today).order_by(models.RealPrice.variance).all()
-    return test[:4], test[-4:]
+    if category:
+        products = db.query(models.RealPrice, models.Product).join(models.Product,
+                                                                   models.Product.id == models.RealPrice.product_id).filter(
+            models.RealPrice.date == today, models.Product.category == category).order_by(
+            models.RealPrice.variance).all()
+    else:
+        products = db.query(models.RealPrice, models.Product).join(models.Product,
+                                                                   models.Product.id == models.RealPrice.product_id).filter(
+            models.RealPrice.date == today).order_by(
+            models.RealPrice.variance).all()
+    return products[:4], products[-4:]
 
 
 def get_product(db: Session):

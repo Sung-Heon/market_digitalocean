@@ -24,4 +24,5 @@ class Product(Base):
     description = Column(String)
     name = Column(String)
     selling = Column(Boolean)
+    category = Column(String)
 
