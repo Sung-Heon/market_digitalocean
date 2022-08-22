@@ -3,7 +3,7 @@
 Main FastAPI app.
 """
 # -*- coding: utf-8 -*-
-from typing import List
+from typing import List, Optional
 import os
 
 from fastapi import FastAPI, Query, Depends
@@ -32,11 +32,16 @@ def get_db():
         db.close()
 
 
-@app.get('/product/{category}', summary='category 빈값이면 category상관없이 갖고옴')
-def get_products(category: CategoryType = None, db: Session = Depends(get_db)):
-    products_rise_top4, products_rise_top4 = crud.get_products(db,category=category)
-    return products_rise_top4, products_rise_top4
+@app.get('/products/{category}')
+def get_products(category: Optional[CategoryType], db: Session = Depends(get_db)):
+    products_rise_top4, products_decrease_top4 = crud.get_products(db,category=category)
+    return products_rise_top4, products_decrease_top4
 
+
+@app.get('/products')
+def get_products( db: Session = Depends(get_db)):
+    products_rise_top4, products_decrease_top4 = crud.get_products(db,category=None)
+    return products_rise_top4, products_decrease_top4
 
 @app.get("/test1", response_model=schemas.Product)
 def read_user(db: Session = Depends(get_db)):
