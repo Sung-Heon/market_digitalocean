@@ -34,14 +34,22 @@ def get_db():
 
 @app.get('/products/{category}')
 def get_products(category: Optional[CategoryType], db: Session = Depends(get_db)):
-    products_rise_top4, products_decrease_top4 = crud.get_products(db,category=category)
+    products_rise_top4, products_decrease_top4 = crud.get_products(db, category=category)
     return products_rise_top4, products_decrease_top4
 
 
 @app.get('/products')
-def get_products( db: Session = Depends(get_db)):
-    products_rise_top4, products_decrease_top4 = crud.get_products(db,category=None)
+def get_products(db: Session = Depends(get_db)):
+    products_rise_top4, products_decrease_top4 = crud.get_products(db, category=None)
     return products_rise_top4, products_decrease_top4
+
+
+@app.get('/product/{product_id}')
+def get_product_detail(product_id: int, db: Session = Depends(get_db)):
+    product_detail = crud.get_product_detail(product_id=product_id, db=db)
+    print(product_detail)
+    return product_detail
+
 
 @app.get("/test1", response_model=schemas.Product)
 def read_user(db: Session = Depends(get_db)):

@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-
+from sqlalchemy import or_
 import models, schemas
 from enum_type import CategoryType
 
@@ -23,6 +23,16 @@ def get_products(db: Session, category: CategoryType):
 
 def get_product(db: Session):
     return db.query(models.Product).first()
+
+
+def get_product_detail(product_id: int, db: Session):
+    today = '2022-08-21'
+    one_week_before = '2022-08-14'
+    two_week_before = '2022-08-07'
+
+    return db.query(models.RealPrice.price, models.RealPrice.date,models.RealPrice.product_id,models.Product).join(models.Product).filter(or_(
+        models.RealPrice.date == today, models.RealPrice.date == one_week_before,
+        models.RealPrice.date == two_week_before), models.RealPrice.product_id==product_id).all()
 
 
 def create_user_item(db: Session, item: schemas.ItemCreate, user_id: int):
